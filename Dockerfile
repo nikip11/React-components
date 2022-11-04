@@ -1,8 +1,8 @@
-FROM node:14.18.3-alpine3.15 AS development
+FROM node:lts AS development
 ENV NODE_ENV development
+ENV NODE_OPTIONS --openssl-legacy-provider
 
-RUN set -xe \
-    && apk add --update
+
+RUN npm install -g vite
 
 WORKDIR /app
-CMD [ "yarn", "start" ]

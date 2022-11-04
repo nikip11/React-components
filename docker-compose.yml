@@ -3,6 +3,7 @@ services:
   app:
     build: .
     tty: true
+    init: true
     container_name: app
     volumes:
       - ./app:/app
@@ -10,3 +11,15 @@ services:
       - PORT=3001
     ports:
       - 3001:3001
+    command: yarn dev
+  storybook:
+    build: .
+    tty: true
+    container_name: storybook
+    volumes:
+      - ./app:/app
+    ports:
+      - 6006:6006
+    working_dir: /app
+    init: true
+    command: yarn storybook
